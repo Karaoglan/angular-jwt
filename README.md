@@ -1,3 +1,6 @@
+# angular-jwt
+json web token with an integration of angular js
+
 # ps-jwt
 
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
