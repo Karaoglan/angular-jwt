@@ -4,7 +4,8 @@ angular
 		$locationProvider.html5Mode(true);
 		$stateProvider.state('register', {
 			url: '/register',
-			templateUrl: 'views/register.html'
+			templateUrl: 'views/register.html',
+			controller: 'RegisterCtrl'
 		});
 		$stateProvider.state('main', {
 			url: '/',
