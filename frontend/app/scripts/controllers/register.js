@@ -4,8 +4,10 @@ angular.module('psJwtApp')
 	.controller('RegisterCtrl', function ($scope, $http, $rootScope, alert) {
 		$scope.submit = function () {
 
-			var url = '/';
-			var user = {};
+			var url = 'http://localhost:3000/register';
+			var user = {
+				name: 'Alex'
+			};
 
 			$http.post(url, user)
 				.then(function successCallback(response) {
