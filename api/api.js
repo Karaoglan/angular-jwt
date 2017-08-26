@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var User = require('./models/User.js')
+var jwt = require('./services/jwt.js')
 
 var app = express();
 
@@ -21,8 +22,19 @@ app.post('/register', function (req, res) {
 		email: user.email,
 		password: user.password
 	})
+
+	var payload = {
+		iss: req.hostname,
+		sub: user._id
+	}
+
+	var token = jwt.encode(payload, "shhh..")
+
 	newUser.save(function(err) {
-		res.status(200).json(newUser.toJSON());
+		res.status(200).send({
+			user: newUser.toJSON(),
+			token: token
+		});
 	})
 })
 
