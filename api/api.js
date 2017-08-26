@@ -1,5 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var User = require('./models/User.js')
 
 var app = express();
 
@@ -13,9 +15,19 @@ app.use(function (req, res, next) {
 })
 
 app.post('/register', function (req, res) {
-	console.log(req.body)
-	res.send('hi');
+	var user = req.body;
+
+	var newUser = new User({
+		email: user.email,
+		password: user.password
+	})
+	newUser.save(function(err) {
+		res.status(200).json(newUser.toJSON());
+	})
 })
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/psjwt')
 
 var server = app.listen(3000, function () {
 	console.log('app listening on ', server.address().port);
