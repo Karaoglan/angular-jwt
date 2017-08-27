@@ -11,5 +11,9 @@ angular
 			url: '/',
 			templateUrl: 'views/main.html'
 		});
+		$stateProvider.state('logout', {
+			url: '/logout',
+			controller: 'LogoutCtrl'
+		});
 
 	});
